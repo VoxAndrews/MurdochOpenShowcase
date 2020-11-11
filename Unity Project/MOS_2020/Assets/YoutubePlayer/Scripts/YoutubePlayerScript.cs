@@ -15,7 +15,7 @@ namespace YoutubePlayer
     /// Downloads and plays Youtube videos a VideoPlayer component
     /// </summary>
     [RequireComponent(typeof(VideoPlayer))]
-    public class YoutubePlayer : MonoBehaviour
+    public class YoutubePlayerScript : MonoBehaviour
     {
         /// <summary>
         /// Youtube url (e.g. https://www.youtube.com/watch?v=VIDEO_ID)
@@ -45,7 +45,7 @@ namespace YoutubePlayer
 
         private async void OnEnable()
         {
-            if (videoPlayer.playOnAwake)
+            if (!videoPlayer.playOnAwake) //Changed from 'videoPlayer.playOnAwake' to '!videoPlayer.playOnAwake' so it can play when not set to 'Play on Awake'
                 await PlayVideoAsync();
         }
 
@@ -71,7 +71,7 @@ namespace YoutubePlayer
                 if (videoPlayer.url != streamInfo.Url)
                     videoPlayer.url = streamInfo.Url;
 
-                videoPlayer.Play();
+                //videoPlayer.Play(); //Commented out so it doesn't play at the start
                 youtubeUrl = videoUrl;
                 YoutubeVideoStarting?.Invoke(youtubeUrl);
             }

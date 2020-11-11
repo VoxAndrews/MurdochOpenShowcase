@@ -18,7 +18,7 @@ namespace YoutubePlayer
         /// <summary>
         /// A YoutubePlayer component to synchronize captions with
         /// </summary>
-        public YoutubePlayer youtubePlayer;
+        public YoutubePlayerScript youtubePlayer;
         
         private VideoPlayer videoPlayer;
 

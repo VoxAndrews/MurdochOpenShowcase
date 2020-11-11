@@ -2,57 +2,98 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using YoutubePlayer;
+
+//This script should be attached to a VideoTrigger Object
 
 public class VideoPlayback : MonoBehaviour
 {
     [SerializeField]
-    GameObject renderObject;
+    GameObject youtubePlaybackObj; //The YoutubePlayer Prefab in the Scene, handles bringing YouTube videos into Unity, as well as Video Playback
     [SerializeField]
-    Material videoMaterial;
-    [SerializeField]
-    AudioSource audioPlayback;
-    [SerializeField]
-    string webAddress;
-    [SerializeField]
-    VideoPlayer videoPlayer;
+    GameObject videoScreenObj; //The Object whioch will be used as a screen
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    Material videoMaterial; //The Material which is used to show the Video (Has a Render Texture applied to it)
+    [SerializeField]
+    RenderTexture renderTex; //The Render Texture which the Video is pumped through
+
+    [SerializeField]
+    string webAddress; //The URL of the Video
+
+    Material defaultMat; //The Material that the object is at in the beggining of the scene
+    //static bool fullScreen = false; //A Boolean to tell the Video Player if the Video should be Full Screen or not
+
+    void Awake()
     {
-        if(videoPlayer == null)
-        {
-            videoPlayer = gameObject.GetComponent<VideoPlayer>();
-        }
-        
-        if(videoPlayer.renderMode != UnityEngine.Video.VideoRenderMode.RenderTexture)
-        {
-            videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.RenderTexture;
-        }
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = "https://youtu.be/ekthcIHDt3I";
 
-        videoMaterial.SetTexture("_BaseMap", videoPlayer.targetTexture);
-        videoMaterial.SetTexture ("_EmissionMap", videoPlayer.targetTexture);
+        renderTex.Release(); //Clears the Render Texture for Usage
 
-        renderObject.GetComponent<MeshRenderer>().material = videoMaterial;
-
-        /*
-        if(videoPlayer.audioOutputMode != UnityEngine.Video.VideoAudioOutputMode.AudioSource)
-        {
-            videoPlayer.audioOutputMode = UnityEngine.Video.VideoAudioOutputMode.AudioSource;
-        }
-
-        videoPlayer.SetTargetAudioSource(0, audioPlayback);
-        */
-
-        //videoPlayer.url = webAddress;
-
-        videoPlayer.Prepare();
-
-        //videoPlayer.Play();
+        defaultMat = videoScreenObj.GetComponent<Renderer>().material; //Finds whatever the Material that is on the videoScreenObj amd sets it
     }
 
-    // Update is called once per frame
-    void Update()
+    async void OnTriggerEnter(Collider collision) //Occurs when the User enters the VideoTrigger's Trigger
     {
-        
+        SetVideo(); //Runs the SetVideo() Function
+
+        renderTex.Create(); //Creates the new Render Texture with the Video
+
+        videoScreenObj.GetComponent<Renderer>().material = videoMaterial; //Changes the Video Screen to have the videoMaterial applied
+
+        await youtubePlaybackObj.GetComponent<YoutubePlayerScript>().PlayVideoAsync(); //Finds the Video from YouTube using the YoutubePlayerScript
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
+
+    }
+
+    /*
+    void OnTriggerStay(Collider other) //Occurs when the User is inside of the VideoTrigger's Trigger
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            switch (fullScreen)
+            {
+                case false:
+                    fullScreen = true;
+
+                    Debug.Log(fullScreen);
+
+                    youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.CameraNearPlane;
+
+                    break;
+                case true:
+                    fullScreen = false;
+
+                    Debug.Log(fullScreen);
+
+                    youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture;
+
+                    break;
+            }
+        }
+    }
+    */
+
+    void OnTriggerExit(Collider collision) //Occurs when the User exits the VideoTrigger's Trigger
+    {
+        videoScreenObj.GetComponent<Renderer>().material = defaultMat; //Sets the Object back to it's Default Material
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture; //Sets the video to render onto the Render Texture again
+
+        //fullScreen = false; //Turns Fullscreen off
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().Stop(); //Stops the video
+
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
+
+        renderTex.Release(); //Clears the Render Texture for Usage
+    }
+
+    void SetVideo() //This sets the video for the specific 
+    {
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
+
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = webAddress; //Sets the URL on the Youtube Player's 'YoutubePlayerScript' component to be equal to the webAddress String
     }
 }

@@ -9,7 +9,7 @@ namespace YoutubePlayer
 {
     public class DownloadYoutubeVideo : MonoBehaviour, IProgress<double>
     {
-        public YoutubePlayer youtubePlayer;
+        public YoutubePlayerScript youtubePlayer;
         public Environment.SpecialFolder destination;
         private Image downloadProgress;
         private float progress;
