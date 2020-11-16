@@ -61,7 +61,7 @@ VideoPlayer:
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
@@ -69,8 +69,8 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
-  m_Url: https://r3---sn-u2bpouxgoxu-2xgl.googlevideo.com/videoplayback?expire=1605105620&ei=c6OrX9aTPMPc4-EP04m7uA0&ip=106.69.14.27&id=o-AH55gjaT0w1VCaLiCdKer2KbutY3ohmpDCngmxjfLjR9&itag=22&source=youtube&requiressl=yes&mh=Je&mm=31%2C29&mn=sn-u2bpouxgoxu-2xgl%2Csn-ntqe6nes&ms=au%2Crdu&mv=m&mvi=3&pl=20&initcwndbps=1357500&vprv=1&mime=video%2Fmp4&ratebypass=yes&dur=545.645&lmt=1552077138993892&mt=1605083924&fvip=3&c=WEB&txp=5535432&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRAIgBa6c1JTpwyIymPxfCSyzUdDZfsFnVBnwm0V5pvxbT_wCIBkcsMPz-mE-4qnGKTG_KZia71KcIJlNDPUaxDj_7EqD&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIhAPREkqWE9yQVW4kCeHJSTFIuDANH4F0__9yPGtzLmPgGAiAe4ybFtFJUOrm9jSYuBTtksg-d8ItFVMc9gzR_wsi0AA%3D%3D
+  - 0.2
+  m_Url: https://r3---sn-u2bpouxgoxu-2xgz.googlevideo.com/videoplayback?expire=1605522622&ei=XQCyX73bO9OUvgSCjr9o&ip=106.69.14.27&id=o-AL-BHxWo5mC8lO3b1BeJ2uMk8REFfvVEhUlywqC4oBNe&itag=22&source=youtube&requiressl=yes&mh=xE&mm=31%2C29&mn=sn-u2bpouxgoxu-2xgz%2Csn-ntqe6nee&ms=au%2Crdu&mv=m&mvi=3&pl=20&initcwndbps=1448750&vprv=1&mime=video%2Fmp4&ns=led3fCIJ1HqWDLyRvdKV0YYF&ratebypass=yes&dur=3600.068&lmt=1540841093225368&mt=1605500921&fvip=5&c=WEB&txp=5431432&n=uWhoRlNv-P0cLA1rB&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRQIhAMGZVA7SN10NhOXV1SgjsM2R5zXgzVfW0L0COek85NRLAiAb74Kj3hdf_gYDDu64H-NEtR6VLc2Hx2I0T03Gywt_Aw%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIhAOFytJES9UrpXbqjZB6TLKuVfauPieVcM1CBj2flkqjwAiBeN8zIUE0hUQmXse64kMsKrEmR7YF3r_j3FjnvO7KK0A%3D%3D
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1

@@ -8,16 +8,25 @@ using YoutubePlayer;
 
 public class VideoPlayback : MonoBehaviour
 {
+    [Header("Video Objects")]
     [SerializeField]
     GameObject youtubePlaybackObj; //The YoutubePlayer Prefab in the Scene, handles bringing YouTube videos into Unity, as well as Video Playback
     [SerializeField]
     GameObject videoScreenObj; //The Object whioch will be used as a screen
 
+    [Header("Materials & Textures")]
     [SerializeField]
     Material videoMaterial; //The Material which is used to show the Video (Has a Render Texture applied to it)
     [SerializeField]
+    Material loadingMaterial; //The Material which is used when the Video is Loading
+    [SerializeField]
     RenderTexture renderTex; //The Render Texture which the Video is pumped through
 
+    [Header("Audio Playback")]
+    [SerializeField]
+    AudioSource playbackSpeaker; //The AudioSource that the Video's Audio will play through
+
+    [Header("YouTube Settings")]
     [SerializeField]
     string webAddress; //The URL of the Video
 
@@ -37,14 +46,36 @@ public class VideoPlayback : MonoBehaviour
     {
         SetVideo(); //Runs the SetVideo() Function
 
+        videoScreenObj.GetComponent<Renderer>().material = loadingMaterial; //Changes the Video Screen to have the loadingMaterial applied
+
+        await youtubePlaybackObj.GetComponent<YoutubePlayerScript>().PlayVideoAsync(); //Finds the Video from YouTube using the YoutubePlayerScript
+
         renderTex.Create(); //Creates the new Render Texture with the Video
 
         videoScreenObj.GetComponent<Renderer>().material = videoMaterial; //Changes the Video Screen to have the videoMaterial applied
 
-        await youtubePlaybackObj.GetComponent<YoutubePlayerScript>().PlayVideoAsync(); //Finds the Video from YouTube using the YoutubePlayerScript
+        if (playbackSpeaker != null) //Checks to see if playbackSpeaker has been set
+        {
+            youtubePlaybackObj.GetComponent<VideoPlayer>().SetTargetAudioSource(0, playbackSpeaker); //Sets the Video Player's AudioSource to be equal to playbackSpeaker
+
+            if (youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode != VideoAudioOutputMode.AudioSource) //Checks to see if the Audio Mode is not set to AudioSource
+            {
+                Debug.Log("Setting Audio Playback to AudioSource");
+
+                youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.AudioSource; //Sets the Video Audio Playback to the Audio Source
+            }
+        }
+        else
+        {
+            if (youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode != VideoAudioOutputMode.Direct)
+            {
+                Debug.Log(gameObject.name + " does not have an AudioSource, please attach one and set it");
+
+                youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.Direct; //Sets the Video Audio Playback to Direct Audio
+            }
+        }
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
-
     }
 
     /*
@@ -84,6 +115,8 @@ public class VideoPlayback : MonoBehaviour
         //fullScreen = false; //Turns Fullscreen off
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().Stop(); //Stops the video
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().SetTargetAudioSource(0, null); //Clears the AudioSource on the Video Player
 
         youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
 

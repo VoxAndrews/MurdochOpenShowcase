@@ -60,5 +60,7 @@ MonoBehaviour:
   youtubePlaybackObj: {fileID: 0}
   videoScreenObj: {fileID: 0}
   videoMaterial: {fileID: 2100000, guid: 60deb728b4a04f1469f17911ab38c5d5, type: 2}
+  loadingMaterial: {fileID: 2100000, guid: cc55460f01a3fb144b30164a0a34fe82, type: 2}
   renderTex: {fileID: 8400000, guid: c1a25c6c98ffef34aba980231d9a593a, type: 2}
-  webAddress: https://www.youtube.com/watch?v=lxMWSmKieuc
+  playbackSpeaker: {fileID: 0}
+  webAddress: https://youtu.be/LXb3EKWsInQ
