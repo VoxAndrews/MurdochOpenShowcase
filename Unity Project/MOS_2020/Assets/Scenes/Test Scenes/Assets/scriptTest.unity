@@ -590,7 +590,13 @@ PrefabInstance:
       propertyPath: videoBackground
       value: 
       objectReference: {fileID: 1015020773}
-    m_RemovedComponents: []
+    - target: {fileID: 6637310238664825578, guid: e281b5d705037214ca559e58e461b353,
+        type: 3}
+      propertyPath: youtubePlay
+      value: 
+      objectReference: {fileID: 45178137}
+    m_RemovedComponents:
+    - {fileID: 6637310238664825578, guid: e281b5d705037214ca559e58e461b353, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e281b5d705037214ca559e58e461b353, type: 3}
 --- !u!4 &170411876 stripped
 Transform:
@@ -871,6 +877,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &360574237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557305076820878915, guid: b8e07cbf4b291f04aa9e3e118367275d,
+    type: 3}
+  m_PrefabInstance: {fileID: 594046949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &360574241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4557305076820878927, guid: b8e07cbf4b291f04aa9e3e118367275d,
@@ -1010,6 +1022,12 @@ Transform:
   m_Father: {fileID: 1096744600}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: -180.00002}
+--- !u!1 &540254821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557305076820878915, guid: b8e07cbf4b291f04aa9e3e118367275d,
+    type: 3}
+  m_PrefabInstance: {fileID: 193335798}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &540254825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4557305076820878927, guid: b8e07cbf4b291f04aa9e3e118367275d,
@@ -1291,6 +1309,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1244552718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &934579886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1769112355}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &934579892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934579886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2741d1223c91aeb408e5b9651d54e709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoBackground: {fileID: 1015020773}
+  youtubePlay: {fileID: 45178137}
+  enableFullscreen: 0
 --- !u!1 &1015020773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,7 +1690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: VideoPlaybackControlsObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: playbackSpeaker
@@ -1804,7 +1843,7 @@ PrefabInstance:
         type: 3}
       propertyPath: videoScreenObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 2009389747}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: webAddress
@@ -1815,6 +1854,11 @@ PrefabInstance:
       propertyPath: playbackSpeaker
       value: 
       objectReference: {fileID: 1158386731}
+    - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
+        type: 3}
+      propertyPath: VideoPlaybackControlsObj
+      value: 
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735479, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1893,7 +1937,7 @@ PrefabInstance:
         type: 3}
       propertyPath: videoScreenObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 1265580252}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: webAddress
@@ -1904,6 +1948,11 @@ PrefabInstance:
       propertyPath: playbackSpeaker
       value: 
       objectReference: {fileID: 274434184}
+    - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
+        type: 3}
+      propertyPath: VideoPlaybackControlsObj
+      value: 
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735479, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1961,11 +2010,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eed665ef4223364c84e593a72f3872f, type: 3}
+--- !u!1 &1249862185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557305076820878915, guid: b8e07cbf4b291f04aa9e3e118367275d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374642568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1249862189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4557305076820878927, guid: b8e07cbf4b291f04aa9e3e118367275d,
     type: 3}
   m_PrefabInstance: {fileID: 1374642568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1265580252 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557305076820878915, guid: b8e07cbf4b291f04aa9e3e118367275d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1227651028}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1265580256 stripped
 Transform:
@@ -2162,7 +2223,7 @@ PrefabInstance:
         type: 3}
       propertyPath: videoScreenObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 360574237}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: webAddress
@@ -2173,6 +2234,11 @@ PrefabInstance:
       propertyPath: playbackSpeaker
       value: 
       objectReference: {fileID: 405860478}
+    - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
+        type: 3}
+      propertyPath: VideoPlaybackControlsObj
+      value: 
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735479, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2534,6 +2600,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPSController
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.919063
@@ -2578,6 +2648,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: m_UseHeadBob
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
 --- !u!1001 &1814428400
@@ -2601,12 +2675,17 @@ PrefabInstance:
         type: 3}
       propertyPath: videoScreenObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 1249862185}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: playbackSpeaker
       value: 
       objectReference: {fileID: 1851097517}
+    - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
+        type: 3}
+      propertyPath: VideoPlaybackControlsObj
+      value: 
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735479, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3024,6 +3103,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8e07cbf4b291f04aa9e3e118367275d, type: 3}
+--- !u!1 &2009389747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557305076820878915, guid: b8e07cbf4b291f04aa9e3e118367275d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2009389746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2009389751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4557305076820878927, guid: b8e07cbf4b291f04aa9e3e118367275d,
@@ -3051,7 +3136,7 @@ PrefabInstance:
         type: 3}
       propertyPath: videoScreenObj
       value: 
-      objectReference: {fileID: 45178137}
+      objectReference: {fileID: 540254821}
     - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: playbackSpeaker
@@ -3062,6 +3147,11 @@ PrefabInstance:
       propertyPath: webAddress
       value: https://www.youtube.com/watch?v=nv4PXPDyTLc
       objectReference: {fileID: 0}
+    - target: {fileID: 2469025298790735465, guid: 9eed665ef4223364c84e593a72f3872f,
+        type: 3}
+      propertyPath: VideoPlaybackControlsObj
+      value: 
+      objectReference: {fileID: 934579886}
     - target: {fileID: 2469025298790735479, guid: 9eed665ef4223364c84e593a72f3872f,
         type: 3}
       propertyPath: m_LocalPosition.x

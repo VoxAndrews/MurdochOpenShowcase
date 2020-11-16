@@ -34,6 +34,8 @@ public class VideoPlayback : MonoBehaviour
 
     Material defaultMat; //The Material that the object is at in the beggining of the scene
 
+    bool triggerEntered = false;
+
     void Awake()
     {
         if(youtubePlaybackObj == null)
@@ -50,10 +52,37 @@ public class VideoPlayback : MonoBehaviour
         defaultMat = videoScreenObj.GetComponent<Renderer>().material; //Finds whatever the Material that is on the videoScreenObj amd sets it
     }
 
-    async void OnTriggerEnter(Collider collision) //Occurs when the User enters the VideoTrigger's Trigger
+    void OnTriggerEnter(Collider collision) //Occurs when the User enters the VideoTrigger's Trigger
     {
         SetVideo(); //Runs the SetVideo() Function
 
+        if(collision.gameObject.tag == "Player")
+        {
+            triggerEntered = true;
+        }
+
+        StartPlayback();
+    }
+
+    void OnTriggerExit(Collider collision) //Occurs when the User exits the VideoTrigger's Trigger
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            triggerEntered = false;
+        }
+
+        StopPlayback();
+    }
+
+    void SetVideo() //This sets the video for the specific 
+    {
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
+
+        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = webAddress; //Sets the URL on the Youtube Player's 'YoutubePlayerScript' component to be equal to the webAddress String
+    }
+
+    async void StartPlayback()
+    {
         videoScreenObj.GetComponent<Renderer>().material = loadingMaterial; //Changes the Video Screen to have the loadingMaterial applied
 
         await youtubePlaybackObj.GetComponent<YoutubePlayerScript>().PlayVideoAsync(); //Finds the Video from YouTube using the YoutubePlayerScript
@@ -87,14 +116,23 @@ public class VideoPlayback : MonoBehaviour
             }
         }
 
-        youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
+        if (triggerEntered == true)
+        {
+            youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
+        }
+        else
+        {
+            StopPlayback();
+        }
     }
 
-    void OnTriggerExit(Collider collision) //Occurs when the User exits the VideoTrigger's Trigger
+    void StopPlayback()
     {
         videoScreenObj.GetComponent<Renderer>().material = defaultMat; //Sets the Object back to it's Default Material
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture; //Sets the video to render onto the Render Texture again
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.Direct; //Sets the Video Audio Playback to Direct Audio
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().Stop(); //Stops the video
 
@@ -107,13 +145,6 @@ public class VideoPlayback : MonoBehaviour
         VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().videoBackground.SetActive(false);
 
         VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().enableFullscreen = false;
-    }
-
-    void SetVideo() //This sets the video for the specific 
-    {
-        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
-
-        youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = webAddress; //Sets the URL on the Youtube Player's 'YoutubePlayerScript' component to be equal to the webAddress String
     }
 
     void EnterFullScreen() //This lets the video enter Fullscreen Mode (Currently Unused)

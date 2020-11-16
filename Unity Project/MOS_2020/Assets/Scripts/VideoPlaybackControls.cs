@@ -7,15 +7,24 @@ public class VideoPlaybackControls : MonoBehaviour
 {
     [SerializeField]
     public GameObject videoBackground;
+    [SerializeField]
+    GameObject youtubePlay; 
 
+    [HideInInspector]
     public bool enableFullscreen = false;
 
-    // Update is called once per frame
+    bool triggerEntered = false;
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(youtubePlay.GetComponent<VideoPlayer>().renderMode == VideoRenderMode.CameraNearPlane)
         {
-            switch(enableFullscreen)
+            videoBackground.SetActive(true);
+        }
+        
+        if ((Input.GetKeyDown(KeyCode.F)) && (triggerEntered == true))
+        {
+            switch (enableFullscreen)
             {
                 case false:
                     Debug.Log("Activating Video Background");
@@ -24,7 +33,7 @@ public class VideoPlaybackControls : MonoBehaviour
 
                     Debug.Log("Enabling Fullscreen Mode");
 
-                    gameObject.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.CameraNearPlane;
+                    youtubePlay.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.CameraNearPlane;
 
                     enableFullscreen = true;
 
@@ -37,12 +46,41 @@ public class VideoPlaybackControls : MonoBehaviour
 
                     Debug.Log("Disabling Fullscreen Mode");
 
-                    gameObject.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture;
+                    youtubePlay.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture;
 
                     enableFullscreen = false;
 
                     break;
             }
+        }
+
+        if((triggerEntered == true) && (!Input.GetKeyDown(KeyCode.F)) && (Input.anyKeyDown))
+        {
+            Debug.Log("Deactivating Video Background");
+
+            videoBackground.SetActive(false);
+
+            Debug.Log("Disabling Fullscreen Mode");
+
+            youtubePlay.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture;
+
+            enableFullscreen = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Video Trigger")
+        {
+            triggerEntered = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other) 
+    {
+        if (other.gameObject.tag == "Video Trigger")
+        {
+            triggerEntered = false;
         }
     }
 }
