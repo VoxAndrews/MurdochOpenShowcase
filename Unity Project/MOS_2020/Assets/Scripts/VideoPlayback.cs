@@ -13,6 +13,8 @@ public class VideoPlayback : MonoBehaviour
     GameObject youtubePlaybackObj; //The YoutubePlayer Prefab in the Scene, handles bringing YouTube videos into Unity, as well as Video Playback
     [SerializeField]
     GameObject videoScreenObj; //The Object whioch will be used as a screen
+    [SerializeField]
+    GameObject VideoPlaybackControlsObj;
 
     [Header("Materials & Textures")]
     [SerializeField]
@@ -31,10 +33,16 @@ public class VideoPlayback : MonoBehaviour
     string webAddress; //The URL of the Video
 
     Material defaultMat; //The Material that the object is at in the beggining of the scene
-    //static bool fullScreen = false; //A Boolean to tell the Video Player if the Video should be Full Screen or not
 
     void Awake()
     {
+        if(youtubePlaybackObj == null)
+        {
+            youtubePlaybackObj = GameObject.Find("YoutubePlayer");
+        }
+
+        youtubePlaybackObj.GetComponent<VideoPlayer>().audioOutputMode = VideoAudioOutputMode.Direct; //Sets the Video Audio Playback to Direct Audio by Default
+
         youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = "https://youtu.be/ekthcIHDt3I";
 
         renderTex.Release(); //Clears the Render Texture for Usage
@@ -49,6 +57,10 @@ public class VideoPlayback : MonoBehaviour
         videoScreenObj.GetComponent<Renderer>().material = loadingMaterial; //Changes the Video Screen to have the loadingMaterial applied
 
         await youtubePlaybackObj.GetComponent<YoutubePlayerScript>().PlayVideoAsync(); //Finds the Video from YouTube using the YoutubePlayerScript
+
+        VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().videoBackground.SetActive(false);
+
+        VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().enableFullscreen = false;
 
         renderTex.Create(); //Creates the new Render Texture with the Video
 
@@ -78,41 +90,11 @@ public class VideoPlayback : MonoBehaviour
         youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
     }
 
-    /*
-    void OnTriggerStay(Collider other) //Occurs when the User is inside of the VideoTrigger's Trigger
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            switch (fullScreen)
-            {
-                case false:
-                    fullScreen = true;
-
-                    Debug.Log(fullScreen);
-
-                    youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.CameraNearPlane;
-
-                    break;
-                case true:
-                    fullScreen = false;
-
-                    Debug.Log(fullScreen);
-
-                    youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture;
-
-                    break;
-            }
-        }
-    }
-    */
-
     void OnTriggerExit(Collider collision) //Occurs when the User exits the VideoTrigger's Trigger
     {
         videoScreenObj.GetComponent<Renderer>().material = defaultMat; //Sets the Object back to it's Default Material
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture; //Sets the video to render onto the Render Texture again
-
-        //fullScreen = false; //Turns Fullscreen off
 
         youtubePlaybackObj.GetComponent<VideoPlayer>().Stop(); //Stops the video
 
@@ -121,6 +103,10 @@ public class VideoPlayback : MonoBehaviour
         youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
 
         renderTex.Release(); //Clears the Render Texture for Usage
+
+        VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().videoBackground.SetActive(false);
+
+        VideoPlaybackControlsObj.GetComponent<VideoPlaybackControls>().enableFullscreen = false;
     }
 
     void SetVideo() //This sets the video for the specific 
@@ -128,5 +114,15 @@ public class VideoPlayback : MonoBehaviour
         youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = ""; //Clears the URL on the Youtube Player's 'YoutubePlayerScript' component
 
         youtubePlaybackObj.GetComponent<YoutubePlayerScript>().youtubeUrl = webAddress; //Sets the URL on the Youtube Player's 'YoutubePlayerScript' component to be equal to the webAddress String
+    }
+
+    void EnterFullScreen() //This lets the video enter Fullscreen Mode (Currently Unused)
+    {
+        youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.CameraNearPlane; //Sets the Render Mode of the video to use the Camera Near-Plane
+    }
+
+    void ExitFullScreen() //This lets the video exit Fullscreen Mode (Currently Unused)
+    {
+        youtubePlaybackObj.GetComponent<VideoPlayer>().renderMode = VideoRenderMode.RenderTexture; //Sets the Render Mode of the video to use the Render Texture
     }
 }
