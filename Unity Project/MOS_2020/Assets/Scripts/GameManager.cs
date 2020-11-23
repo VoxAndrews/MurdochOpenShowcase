@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,5 +31,19 @@ public class GameManager : MonoBehaviour
     public void EnableInputs()
     {
         fpsObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().disableInput = false;
+    }
+
+    public void LoadScene(string name)
+    {
+        if(Application.CanStreamedLevelBeLoaded(name))
+        {
+            SceneManager.LoadScene(name);
+        }
+        else
+            {
+                Debug.Log("Error: Scene '" + name + "' not found! Reloading current scene");
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
     }
 }
