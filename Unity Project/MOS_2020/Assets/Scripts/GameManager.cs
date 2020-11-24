@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject fpsObject;
 
+    Vector3 playerInitPos;
+
     void Awake()
     {
         if(fpsObject == null)
@@ -14,7 +16,14 @@ public class GameManager : MonoBehaviour
             fpsObject = GameObject.Find("FPSController");
         }
 
+        playerInitPos = fpsObject.transform.position;
+
         HideAndLockCursor();
+    }
+
+    void Update()
+    {
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time);
     }
 
     public void HideAndLockCursor()
@@ -45,5 +54,10 @@ public class GameManager : MonoBehaviour
 
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
+    }
+
+    public void Respawn()
+    {
+        fpsObject.transform.position = playerInitPos;
     }
 }
