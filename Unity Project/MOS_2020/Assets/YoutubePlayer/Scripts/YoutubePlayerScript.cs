@@ -43,6 +43,16 @@ namespace YoutubePlayer
             videoPlayer = GetComponent<VideoPlayer>();
         }
 
+        public void PauseVideo()
+        {
+            gameObject.GetComponent<VideoPlayer>().Pause();
+        }
+
+        public void ResumeVideo()
+        {
+            gameObject.GetComponent<VideoPlayer>().Play();
+        }
+
         private async void OnEnable()
         {
             if (!videoPlayer.playOnAwake) //Changed from 'videoPlayer.playOnAwake' to '!videoPlayer.playOnAwake' so it can play when not set to 'Play on Awake'

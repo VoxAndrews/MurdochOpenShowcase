@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3782880499020863617}
   - component: {fileID: 3782880499020863618}
   - component: {fileID: 3782880499020863616}
-  - component: {fileID: 6637310238664825578}
   m_Layer: 0
   m_Name: YoutubePlayer
   m_TagString: Untagged
@@ -45,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3768fe280903842fdaa2a016022624f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  youtubeUrl: 
+  youtubeUrl: https://www.youtube.com/watch?v=ZWHPYsRn_uY
 --- !u!328 &3782880499020863616
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -66,12 +65,12 @@ VideoPlayer:
   m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 1
+  m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
   - 0.2
-  m_Url: https://r3---sn-u2bpouxgoxu-2xgz.googlevideo.com/videoplayback?expire=1605536016&ei=sDSyX4m4MYexwgO_uriICA&ip=106.69.14.27&id=o-AKIjlqAxGbAv9OUakpt3jIbQraHXRcVc-df9ELHoM-k4&itag=22&source=youtube&requiressl=yes&mh=xE&mm=31%2C29&mn=sn-u2bpouxgoxu-2xgz%2Csn-ntq7yner&ms=au%2Crdu&mv=m&mvi=3&pl=20&initcwndbps=1531250&vprv=1&mime=video%2Fmp4&ns=BzSByKlpf-YWVgOtJHV6tuAF&ratebypass=yes&dur=3600.068&lmt=1540841093225368&mt=1605514362&fvip=5&c=WEB&txp=5431432&n=eFtA2NFQ7dvTrm6R7&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&sig=AOq0QJ8wRgIhALiMmnWTMUQEQLs3eJ0nmRfgl1vghoCxECYtL6TLqcjvAiEAq73FEDpVc8gWR5MLvmS5O4QO6y6YMbdk6u0GMBIijWw%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRQIgGCi3wBbBVtJLxkpS2ZdJ2W9V6MXWD___9HNCuUrYWNQCIQDwXh8QS2t7M4nNoNPGaeL29q5ZGS9rRyB-Jk4sycVV3A%3D%3D
+  m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
@@ -80,16 +79,3 @@ VideoPlayer:
   m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
---- !u!114 &6637310238664825578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3782880499020863619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2741d1223c91aeb408e5b9651d54e709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  videoBackground: {fileID: 0}
