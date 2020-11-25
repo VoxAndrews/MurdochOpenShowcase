@@ -5,7 +5,9 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour
 {
     public GameObject gameManage; //The Game Managment Object (With the GameManager.cs Script attached)
+    public GameObject audioManage;
     public GameObject fadeObject; //The Fade Object (Which controls the Fade In/Out Transitions)
+    public GameObject pauseMenu;
     public bool startup = false; //This Boolean dictates which scene uses the initial startup transition
     public bool newScene = false; //This Boolean dictates which scene uses the transition animation
     public string nextScene; //The name of the next scene to load
@@ -15,6 +17,11 @@ public class CanvasManager : MonoBehaviour
         if (gameManage == null)
         {
             gameManage = GameObject.Find("GameManager");
+        }
+
+        if (audioManage == null)
+        {
+            audioManage = GameObject.Find("AudioManager");
         }
 
         if (fadeObject == null)
@@ -38,6 +45,15 @@ public class CanvasManager : MonoBehaviour
                     StartCoroutine(FadeInFromWhite());
                 }
             }
+    }
+
+    public void ActivatePauseMenu()
+    {
+        Debug.Log("Opening Pause Menu");
+
+        audioManage.GetComponent<AudioManager>().PauseAllAudio();
+
+        pauseMenu.SetActive(true);
     }
 
     public IEnumerator FadeInBlackToWhite() //The initial transition when starting the program

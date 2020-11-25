@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject fpsObject;
+    public GameObject canvas;
 
     Vector3 playerInitPos;
 
@@ -16,6 +18,11 @@ public class GameManager : MonoBehaviour
             fpsObject = GameObject.Find("FPSController");
         }
 
+        if(canvas == null)
+        {
+            canvas = GameObject.Find("Canvas");
+        }
+
         playerInitPos = fpsObject.transform.position;
 
         HideAndLockCursor();
@@ -24,12 +31,35 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         RenderSettings.skybox.SetFloat("_Rotation", Time.time);
+
+        if(fpsObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().disableInput == false)
+        {
+            ManageInputs();
+        }
+    }
+
+    public void ManageInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            canvas.GetComponent<CanvasManager>().ActivatePauseMenu();
+
+            ShowAndConstrainCursor();
+
+            DisableInputs();
+        }
     }
 
     public void HideAndLockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void ShowAndConstrainCursor()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void DisableInputs()
@@ -59,5 +89,12 @@ public class GameManager : MonoBehaviour
     public void Respawn()
     {
         fpsObject.transform.position = playerInitPos;
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game");
+
+        Application.Quit();
     }
 }
