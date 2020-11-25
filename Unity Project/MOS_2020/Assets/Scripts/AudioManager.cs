@@ -51,12 +51,17 @@ public class AudioManager : MonoBehaviour
     {
         videoVolume = volume;
 
-        if (videoAudio.audioOutputMode == VideoAudioOutputMode.AudioSource)
+        if (videosInScene == true)
         {
-            videoAudio.GetTargetAudioSource(0).volume = videoVolume;
+            if (videoAudio.audioOutputMode == VideoAudioOutputMode.AudioSource)
+            {
+                videoAudio.GetTargetAudioSource(0).volume = videoVolume;
+            }
+            else
+                videoAudio.SetDirectAudioVolume(0, videoVolume);
         }
         else
-            videoAudio.SetDirectAudioVolume(0, videoVolume);
+            Debug.Log("No Videos in Scene");
     }
 
     public void PauseAllAudio()
