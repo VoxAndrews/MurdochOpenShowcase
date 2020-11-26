@@ -161,11 +161,7 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.selectMode",
-<<<<<<< HEAD
-                "value": "{\"m_Value\":1}"
-=======
-                "value": "{\"m_Value\":4}"
->>>>>>> 9c2e531c09ebf4daaa0bfdd65be0a20632e526c4
+                "value": "{\"m_Value\":2}"
             },
             {
                 "type": "UnityEngine.ProBuilder.PivotLocation, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
