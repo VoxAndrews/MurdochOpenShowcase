@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
 
     Vector3 playerInitPos;
 
+    [Range (0.0f, 100.0f)]
+    public float rotationSpeedMultiplier;
+
     void Awake()
     {
         if(fpsObject == null)
@@ -30,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time);
+        RenderSettings.skybox.SetFloat("_Rotation", Time.time * rotationSpeedMultiplier);
 
         if(fpsObject.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().disableInput == false)
         {
