@@ -164,8 +164,8 @@
 <<<<<<< HEAD
                 "value": "{\"m_Value\":1}"
 =======
-                "value": "{\"m_Value\":4}"
->>>>>>> 9c2e531c09ebf4daaa0bfdd65be0a20632e526c4
+                "value": "{\"m_Value\":2}"
+>>>>>>> 561f298b3fc5d7d7ae59b6770245a5e44143911b
             },
             {
                 "type": "UnityEngine.ProBuilder.PivotLocation, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
