@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: AzoSans-Italic SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1108132995
   material: {fileID: 3735822943775584351}
-  materialHashCode: 0
+  materialHashCode: -55212714
   m_Version: 1.1.0
   m_SourceFontFileGUID: b82f3ad2025ca0149b17248d3593ff25
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -2555,9 +2555,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
