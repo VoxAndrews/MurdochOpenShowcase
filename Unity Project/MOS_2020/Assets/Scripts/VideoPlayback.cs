@@ -38,7 +38,7 @@ public class VideoPlayback : MonoBehaviour
 
     Material defaultMat; //The Material that the object is at in the beggining of the scene
 
-    bool triggerEntered = false;
+    public bool triggerEntered = false;
 
     void Awake()
     {
@@ -76,6 +76,14 @@ public class VideoPlayback : MonoBehaviour
         }
 
         StopPlayback();
+    }
+
+    public void UnpuaseVideo()
+    {
+        if(triggerEntered == true)
+        {
+            youtubePlaybackObj.GetComponent<YoutubePlayerScript>().ResumeVideo();
+        }
     }
 
     void SetVideo() //This sets the video for the specific 

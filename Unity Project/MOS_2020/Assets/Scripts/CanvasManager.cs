@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject videoManage;
     public GameObject fadeObject; //The Fade Object (Which controls the Fade In/Out Transitions)
     public GameObject pauseMenu;
+    public GameObject videoTrigger;
     public bool startup = false; //This Boolean dictates which scene uses the initial startup transition
     public bool newScene = false; //This Boolean dictates which scene uses the transition animation
     public string nextScene; //The name of the next scene to load
@@ -60,7 +61,7 @@ public class CanvasManager : MonoBehaviour
 
         audioManage.GetComponent<AudioManager>().PauseAllAudio();
 
-        if(videosInScene == true)
+        if(videosInScene == true && videoTrigger.GetComponent<VideoPlayback>().triggerEntered == true)
         {
             videoManage.GetComponent<YoutubePlayer.YoutubePlayerScript>().PauseVideo();
         }
