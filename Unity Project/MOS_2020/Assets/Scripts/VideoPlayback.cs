@@ -8,6 +8,10 @@ using YoutubePlayer;
 
 public class VideoPlayback : MonoBehaviour
 {
+    [Header("Managers")]
+    [SerializeField]
+    GameObject audioManage;
+
     [Header("Video Objects")]
     [SerializeField]
     GameObject youtubePlaybackObj; //The YoutubePlayer Prefab in the Scene, handles bringing YouTube videos into Unity, as well as Video Playback
@@ -118,6 +122,8 @@ public class VideoPlayback : MonoBehaviour
 
         if (triggerEntered == true)
         {
+            audioManage.GetComponent<AudioManager>().VideoStartup();
+
             youtubePlaybackObj.GetComponent<VideoPlayer>().Play(); //Plays the Video
         }
         else

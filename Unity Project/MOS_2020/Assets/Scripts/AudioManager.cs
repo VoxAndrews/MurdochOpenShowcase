@@ -6,8 +6,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     AudioSource[] allAudioSources;
-    float sfxVolume = 0.5f;
-    float videoVolume = 0.5f; 
+    static float sfxVolume = 0.5f;
+    static float videoVolume = 0.5f; 
 
     public AudioSource[] sfxObjects;
     public VideoPlayer videoAudio;
@@ -51,6 +51,21 @@ public class AudioManager : MonoBehaviour
     {
         videoVolume = volume;
 
+        if (videosInScene == true)
+        {
+            if (videoAudio.audioOutputMode == VideoAudioOutputMode.AudioSource)
+            {
+                videoAudio.GetTargetAudioSource(0).volume = videoVolume;
+            }
+            else
+                videoAudio.SetDirectAudioVolume(0, videoVolume);
+        }
+        else
+            Debug.Log("No Videos in Scene");
+    }
+
+    public void VideoStartup()
+    {
         if (videosInScene == true)
         {
             if (videoAudio.audioOutputMode == VideoAudioOutputMode.AudioSource)
